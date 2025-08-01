@@ -1,11 +1,7 @@
-﻿
-#define DIRECTINPUT_VERSION 0x0800
-#include <dinput.h>
+﻿#include "pch.h"
 #include "Wnd.h"
-#include "Tool.h"
 
 #include "Resources/AOBList.h"
-#include "Share/Funcs.h"
 
 namespace {
 

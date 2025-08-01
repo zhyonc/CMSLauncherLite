@@ -1,12 +1,11 @@
+#include "pch.h"
 #include "Hook.h"
 #include "AntiCheat.h"
 #include "ResMan.h"
 #include "Wnd.h"
-#include "Tool.h"
 
 #include "Resources/AOBList.h"
 #include "Resources/Config.h"
-#include "Share/Funcs.h"
 
 namespace {
 	static Rosemary gMapleR;
@@ -14,49 +13,13 @@ namespace {
 	static bool bGethostbynameLoaded = false;
 	static bool bCreateMutexALoaded = false;
 
-	void GetModuleEntryList(std::vector<MODULEENTRY32W>& entryList) {
-		DWORD pid = GetCurrentProcessId();
-
-		if (!pid) {
-			return;
-		}
-
-		HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, pid);
-
-		if (hSnapshot == INVALID_HANDLE_VALUE) {
-			return;
-		}
-
-		MODULEENTRY32W me32;
-		memset(&me32, 0, sizeof(me32));
-		me32.dwSize = sizeof(me32);
-		if (!Module32FirstW(hSnapshot, &me32)) {
-			CloseHandle(hSnapshot);
-			return;
-		}
-
-		entryList.clear();
-
-		do {
-			entryList.push_back(me32);
-		} while (Module32NextW(hSnapshot, &me32));
-
-		CloseHandle(hSnapshot);
-	}
-
 	// Make sure the executable unpacks itself.
 	bool InitMapleSectionList() {
 		if (gMapleR.IsSectionInitialized()) {
 			DEBUG(L"Maple section list was already initialized");
 			return true;
 		}
-		std::vector<MODULEENTRY32W> entryList;
-		GetModuleEntryList(entryList);
-		if (entryList.empty()) {
-			DEBUG(L"EXE hasn't been call yet");
-			return false;
-		}
-		gMapleR.InitSectionList(&entryList, L"MapleStory.exe");
+		gMapleR.InitSectionList(L"MapleStory.exe");
 		if (!gMapleR.IsSectionInitialized()) {
 			DEBUG(L"Failed to init maple section list");
 			return false;
@@ -117,6 +80,7 @@ namespace {
 			if (!ResMan::Mount(gMapleR)) {
 				DEBUG(L"Unable to mount res man");
 			}
+			//RShield::Init();
 		}
 		if (lpName && strstr(lpName, "WvsClientMtx")) {
 			// MultiClient: faking HANDLE is 0xBADF00D(BadFood)

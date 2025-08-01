@@ -1,5 +1,5 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
-#include <windows.h>
+#include "pch.h"
 #include "Hook.h"
 
 static HANDLE ghThread = nullptr;

@@ -1,5 +1,4 @@
 #pragma once
-#include "Share/Rosemary.h"
 
 namespace AntiCheat{
 	void RemoveSecurityChecks(Rosemary& r);

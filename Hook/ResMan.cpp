@@ -1,8 +1,7 @@
+#include "pch.h"
 #include "ResMan.h"
-#include "Tool.h"
 
 #include "Resources/AOBList.h"
-#include "Share/Funcs.h"
 
 namespace {
 
@@ -129,7 +128,7 @@ namespace ResMan {
 
 	bool Mount(Rosemary& r) {
 		// Check data directory
-		DWORD attributes = GetFileAttributes(L"Data");
+		DWORD attributes = GetFileAttributesW(L"Data");
 		if (attributes == INVALID_FILE_ATTRIBUTES || !(attributes & FILE_ATTRIBUTE_DIRECTORY)) {
 			DEBUG(L"Failed to find Data directory");
 			return false;
@@ -140,7 +139,6 @@ namespace ResMan {
 			DEBUG(L"Failed to find CWvsApp::InitializeResMan");
 			return false;
 		}
-		SCANRES(uBaseAddr);
 		// PcCreateObject::IWzResMan
 		ULONG_PTR uIWzResManCall = 0;
 		ULONG_PTR uIWzResManAddr = 0;
@@ -149,7 +147,6 @@ namespace ResMan {
 			DEBUG(L"Failed to find PcCreateObject::IWzResMan");
 			return false;
 		}
-		SCANRES(uIWzResManCall);
 		SADDR(&_PcCreateObject__IWzResMan, uIWzResManAddr);
 		// PcCreateObject::IWzNameSpace
 		ULONG_PTR uIWzNameSpaceCall = 0;
@@ -159,7 +156,6 @@ namespace ResMan {
 			DEBUG(L"Failed to find PcCreateObject::IWzNameSpace");
 			return false;
 		}
-		SCANRES(uIWzNameSpaceCall);
 		SADDR(&_PcCreateObject__IWzNameSpace, uIWzNameSpaceAddr);
 		// PcCreateObject::IWzFileSystem
 		ULONG_PTR uIWzFileSystemCall = 0;
@@ -169,7 +165,6 @@ namespace ResMan {
 			DEBUG(L"Failed to find PcCreateObject::IWzFileSystem");
 			return false;
 		}
-		SCANRES(uIWzFileSystemCall);
 		SADDR(&_PcCreateObject__IWzFileSystem, uIWzFileSystemAddr);
 		// _bstr_t::_bstr_t
 		ULONG_PTR bstrCall = 0;
@@ -179,7 +174,6 @@ namespace ResMan {
 			DEBUG(L"Failed to find _bstr_t::_bstr_t");
 			return false;
 		}
-		SCANRES(bstrCall);
 		SADDR(&_bstr_ctor, bstrAddr);
 		// IWzFileSystem::Init
 		ULONG_PTR uIWzFileSystemInitCall = 0;
@@ -189,7 +183,6 @@ namespace ResMan {
 			DEBUG(L"Failed to find IWzFileSystem::Init");
 			return false;
 		}
-		SCANRES(uIWzFileSystemInitCall);
 		SADDR(&_IWzFileSystem__Init, uIWzFileSystemInitAddr);
 		// IWzNameSpace::Mount
 		ULONG_PTR uMountCall = 0;
@@ -199,15 +192,11 @@ namespace ResMan {
 			DEBUG(L"Failed to find IWzNameSpace::Mount");
 			return false;
 		}
-		SCANRES(uMountCall);
 		SADDR(&_IWzNameSpace__Mount, uMountAddr);
 		// Global Var
 		gResMan = (void**)(GetDWORDAddress(uIWzResManCall - 0x9));
 		gRoot = (void**)(GetDWORDAddress(uIWzNameSpaceCall - 0x9));
 		gSetRootNameSpaceFn = (void**)(GetFuncAddress(uIWzNameSpaceCall + 0x2A));
-		SCANRES((ULONG_PTR)gResMan);
-		SCANRES((ULONG_PTR)gRoot);
-		SCANRES((ULONG_PTR)gSetRootNameSpaceFn);
 		// ResMan Ready
 		SADDR(&_CWvsApp__InitializeResMan, uBaseAddr);
 		return SHOOK(true, &_CWvsApp__InitializeResMan, CWvsApp__InitializeResMan_Hook);

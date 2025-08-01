@@ -1,5 +1,4 @@
 #pragma once
-#include "Share/Rosemary.h"
 
 namespace Wnd {
 	bool SkipStartUpLogo(Rosemary& r);

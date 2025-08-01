@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Share">
-      <UniqueIdentifier>{2737f7a7-15f2-4700-85f3-80b11d039a74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Share">
-      <UniqueIdentifier>{5eb6cd03-e1b3-4588-9a7d-5319c264f8bc}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -33,20 +27,11 @@
     <ClCompile Include="AntiCheat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tool.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ResMan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Share\AOBScan.cpp">
-      <Filter>Source Files\Share</Filter>
-    </ClCompile>
-    <ClCompile Include="Share\Funcs.cpp">
-      <Filter>Source Files\Share</Filter>
-    </ClCompile>
-    <ClCompile Include="Share\Rosemary.cpp">
-      <Filter>Source Files\Share</Filter>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,20 +50,11 @@
     <ClInclude Include="AntiCheat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ResMan.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Share\AOBScan.h">
-      <Filter>Header Files\Share</Filter>
-    </ClInclude>
-    <ClInclude Include="Share\Funcs.h">
-      <Filter>Header Files\Share</Filter>
-    </ClInclude>
-    <ClInclude Include="Share\Rosemary.h">
-      <Filter>Header Files\Share</Filter>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

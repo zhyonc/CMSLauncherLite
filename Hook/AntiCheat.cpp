@@ -1,8 +1,7 @@
+#include "pch.h"
 #include "AntiCheat.h"
-#include "Tool.h"
 
 #include "Resources/AOBList.h"
-#include "Share/Funcs.h"
 
 namespace AntiCheat {
 

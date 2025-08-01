@@ -32,12 +32,14 @@ Please tell me if you find any errors during login to these versions
 1. Set `IS_DEV` is true
 2. Set `REMOTE_DIR` to MapleStory directory
 3. Set options in `Config.h`
-4. Build solution with `Release x86` mode
-5. Run it in Visual Studio will inject hook by remote
-6. Recommend using [DebugView](https://learn.microsoft.com/en-us/sysinternals/downloads/debugview) to see debug log
+4. Set `IS_DEBUG_MODE` true in `pch.h`
+5. Build solution with `Release x86` mode
+6. Run it in Visual Studio will inject hook by remote
+7. Recommend using [DebugView](https://learn.microsoft.com/en-us/sysinternals/downloads/debugview) to see debug log
 
 ### Release
 1. Set `IS_DEV` is false
-2. Build solution with `Release x86` mode
-3. Put `Launcher.exe` and `Hook.dll` into MapleStory directory
-4. Run `Launcher.exe` to connect login server
+2. Set `IS_DEBUG_MODE` false in `pch.h`
+3. Build solution with `Release x86` mode
+4. Put `Launcher.exe` and `Hook.dll` into MapleStory directory
+5. Run `Launcher.exe` to connect login server
