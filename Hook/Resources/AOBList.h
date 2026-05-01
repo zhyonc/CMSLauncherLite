@@ -20,6 +20,7 @@ const std::wstring AOB_Scan_CWvsApp__InitializeResMan_Integrity_Check_Addr = L"7
 const std::wstring AOB_Scan_CWvsApp__InitAcGuardian_Addr = L"55 8B EC 81 EC B0 03 00 00 56"; // CMS15(0x00592778)
 const std::wstring AOB_Scan_CSecurityThread__Start_Addr = L"B8 B8 2D 5D 00 E8"; // CMS15(0x00593833)
 const std::wstring AOB_Scan_CWvsApp__UpdateTime_Call = L"85 D2 75 07 8B CE E8"; // CMS15(0x00593B47)
+const std::wstring AOB_Scan_CMobPool__Update_Addr = L"75 0F 8B 0D 80 15 61 00 8D 45 D8 50 E8"; // CMS15(0x004B4B8C)
 #pragma endregion
 
 #pragma region CMS48-CMS69

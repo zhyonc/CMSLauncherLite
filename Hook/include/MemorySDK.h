@@ -4,6 +4,7 @@
 #include <tlhelp32.h>
 #include <vector>
 #include <string>
+#include <comdef.h> 
 
 #pragma region AOBHelper
 ULONG_PTR GetFuncAddress(ULONG_PTR uAddr);
@@ -52,7 +53,7 @@ public:
 #define DEBUG(msg)
 #endif
 
-#define SCANRES(msg) { DEBUG(L""#msg" = " + DWORD2String(msg));}
+#define SCANRES(msg) { DEBUG(L""#msg" = " + Int2String(msg));}
 
 #define CHECK_HRESULT(HR) \
 do { \
@@ -66,7 +67,7 @@ do { \
 
 #pragma region ProcessHelper
 void GetModuleEntryList(std::vector<MODULEENTRY32W>& vModuleEntryList);
-bool FindModuleEntry(const std::wstring& wModuleName, BYTE** ppBaseAddr, DWORD& baseSize);
+bool FindModuleEntry(const std::wstring& wModuleName, BYTE** ppBaseAddr, ULONG_PTR& baseSize);
 bool IsModuleCalled(const std::wstring& wModuleName, void* pReturnAddress);
 bool ExtractSectionList(const std::wstring& wModuleName, std::vector<MEMORY_BASIC_INFORMATION>& vTextSection, std::vector<MEMORY_BASIC_INFORMATION>& vDataSection);
 #pragma endregion
@@ -105,6 +106,6 @@ public:
 
 #pragma region StringHelper
 std::wstring BYTE2String(BYTE b);
-std::wstring DWORD2String(DWORD dw);
+std::wstring Int2String(ULONG_PTR addr);
 std::wstring Str2WStr(const std::string& str);
 #pragma endregion

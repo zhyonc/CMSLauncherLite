@@ -51,6 +51,12 @@ namespace AntiCheat {
 			r.WriteByte(uCWvsAppUpdateTimeCall + 2, 0xEB);
 		}
 #pragma endregion
+#pragma region CMobPool::Update
+		ULONG_PTR uMobPoolUpdateAddr = r.Scan(AOB_Scan_CMobPool__Update_Addr);
+		if (uMobPoolUpdateAddr > 0) {
+			r.WriteByte(uMobPoolUpdateAddr, 0xEB);
+		}
+#pragma endregion
 	}
 
 	bool RemoveNewPatcherCheck(Rosemary& r)

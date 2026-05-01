@@ -80,7 +80,6 @@ namespace {
 			if (!ResMan::Mount(gMapleR)) {
 				DEBUG(L"Unable to mount res man");
 			}
-			//RShield::Init();
 		}
 		if (lpName && strstr(lpName, "WvsClientMtx")) {
 			// MultiClient: faking HANDLE is 0xBADF00D(BadFood)
@@ -95,7 +94,7 @@ namespace {
 			// Customize game window title 
 			lpWindowName = Config::WindowTitle.c_str();
 			// Show minimize button
-			dwStyle |=  WS_MINIMIZEBOX | WS_SYSMENU;
+			dwStyle |= WS_MINIMIZEBOX | WS_SYSMENU;
 			// Place the game window in the center of the screen
 			RECT screenRect;
 			GetWindowRect(GetDesktopWindow(), &screenRect);

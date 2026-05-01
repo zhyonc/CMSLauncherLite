@@ -33,7 +33,7 @@ Please tell me if you find any errors during login to these versions
 2. Set `REMOTE_DIR` to MapleStory directory
 3. Set options in `Config.h`
 4. Set `IS_DEBUG_MODE` true in `pch.h`
-5. Build solution with `Release x86` mode
+5. Build solution with `Debug x86` mode
 6. Run it in Visual Studio will inject hook by remote
 7. Recommend using [DebugView](https://learn.microsoft.com/en-us/sysinternals/downloads/debugview) to see debug log
 
